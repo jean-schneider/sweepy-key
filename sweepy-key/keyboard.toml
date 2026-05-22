@@ -1,0 +1,70 @@
+[keyboard]
+name = "sweepy-key"
+product_name = "sweepy-key"
+vendor_id = 0x4c4b
+product_id = 0x4643
+manufacturer = "RMK"
+chip = "rp2040"
+
+[layout]
+rows = 4
+cols = 10
+layers = 1
+matrix_map = """
+(0,0,L) (0,1,L) (0,2,L) (0,3,L) (0,4,L)    (0,5,R) (0,6,R) (0,7,R) (0,8,R) (0,9,R)
+(1,0,L) (1,1,L) (1,2,L) (1,3,L) (1,4,L)    (1,5,R) (1,6,R) (1,7,R) (1,8,R) (1,9,R)
+(2,0,L) (2,1,L) (2,2,L) (2,3,L) (2,4,L)    (2,5,R) (2,6,R) (2,7,R) (2,8,R) (2,9,R)
+                       (3,3,L)  (3,4,L)    (3,5,R) (3,6,R)
+"""
+
+
+[[layer]]
+name = "base"
+keys = """
+Q          W          E           R            T    Y U            I           O          P
+MT(A,LGui) MT(S,LAlt) MT(D,LCtrl) MT(F,LShift) G    H MT(J,RShift) MT(K,RCtrl) MT(L,LAlt) MT(Semicolon,RGui)
+Z          X          C           V            B    N M            Comma       Dot        Slash
+                                    Enter  Space    Enter  Backspace
+"""
+
+
+[storage]
+clear_layout = true  # Clears saved keymaps on flash
+
+[split]
+connection = "serial"
+
+[split.central]
+rows = 4
+cols = 5
+row_offset = 0
+col_offset = 0
+serial = [{ instance = "PIO0", tx_pin = "PIN_1", rx_pin = "PIN_1" }]  # Same pin for TX/RX
+
+[split.central.matrix]
+matrix_type = "direct_pin"
+direct_pins=[
+    ["PIN_7", "PIN_26", "PIN_27", "PIN_28", "PIN_29"],
+    ["PIN_22", "PIN_20", "PIN_23", "PIN_21", "PIN_0"],
+    ["PIN_2", "PIN_3", "PIN_4", "PIN_5", "PIN_6"],
+    ["_", "_", "_", "PIN_8", "PIN_9"]
+]
+
+[[split.peripheral]]
+rows = 4
+cols = 5
+row_offset = 0
+col_offset = 5
+serial = [{ instance = "PIO0", tx_pin = "PIN_1", rx_pin = "PIN_1" }]  # Same pin for TX/RX
+
+[split.peripheral.matrix]
+matrix_type = "direct_pin"
+direct_pins=[
+    ["PIN_29", "PIN_28", "PIN_27", "PIN_26", "PIN_7"],
+    ["PIN_0", "PIN_21", "PIN_23", "PIN_20", "PIN_22"],
+    ["PIN_6", "PIN_5", "PIN_4", "PIN_3", "PIN_2"],
+    ["PIN_9", "PIN_8", "_", "_", "_"]
+]
+
+[rmk]
+split_peripherals_num = 1
