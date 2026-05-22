@@ -1,6 +1,8 @@
-# RMK 
+# Sweepy key 
 
-RMK is a feature-rich and easy-to-use keyboard firmware.
+An ERGO-L keyboard firmware for a wired Ferris Sweep split keybaord. 
+
+Uses a ProMicro RP2040 micro-controller.
 
 ## Use the template
 
